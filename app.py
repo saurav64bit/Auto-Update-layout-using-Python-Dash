@@ -25,17 +25,24 @@ app.layout = html.Div([
     ),
 
     html.Div([
-    	html.H1(config.layout['headingText'], className='text-muted', style={'font-size':str(config.layout['headingSize'])+'px'}),
+    	html.H1(config.layout['heading1Text'], className='text-muted', style={'font-size':str(config.layout['headingTextSize'])+'px'}),
     	html.Br(),
+    	html.H1(id='update-text-1', className='font-weight-bold text-primary', style={'font-size':str(config.layout['dataTextSize'])+'px'}),
+        
         html.Br(),
-    	html.H1(id='text-update', className='font-weight-bold text-primary', style={'font-size':str(config.layout['dataSize'])+'px'}),
+        html.Br(),
+        
+        html.H1(config.layout['heading2Text'], className='text-muted', style={'font-size':str(config.layout['headingTextSize'])+'px'}),
+        html.Br(),
+        html.H1(id='update-text-2', className='font-weight-bold text-primary', style={'font-size':str(config.layout['dataTextSize'])+'px'}),
     ],className='container-fluid text-center')
 
 ],className='jumbotron d-flex align-items-center min-vh-100', style={'margin':'0px', 'padding':'0px', 'font-family': 'Comic Sans MS , cursive, sans-serif'})
 
 @app.callback(
-    Output('text-update', 'children'),
-    [Input('interval-component', 'n_intervals')])
+    [Output(component_id='update-text-1', component_property='children'),
+     Output(component_id='update-text-2', component_property='children')],
+    [Input(component_id='interval-component', component_property='n_intervals')])
 def update(n):
 	return config.data()
 
